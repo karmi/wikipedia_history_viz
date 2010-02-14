@@ -15,9 +15,10 @@ h1 { font-size: 22px; }
   width: 80%;
 }
 
-#holder {
-    margin: 20px auto;
-    padding: 0 20px 2em 20px;
+#timeline {
+  margin: 20px auto;
+  width: 100%;
+  overflow: auto;
 }
 
 #copy {
