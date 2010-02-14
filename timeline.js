@@ -7,7 +7,7 @@ var iframe_loaded = function() {
   $('#dialog iframe').show();
 };
 
-function WikipediaHistory(data) {
+function WikipediaHistoryTimeline(data) {
 
   var $this = this;
   var history_page = 'http://en.wikipedia.org/w/index.php?title=Metal_umlaut&diff=prev&oldid=';
@@ -169,4 +169,4 @@ function WikipediaHistory(data) {
 };
 
 // OnLoad callback
-jQuery( function() { window.app = new WikipediaHistory(data) } );
+jQuery( function() { window.app = new WikipediaHistoryTimeline(data) } );
