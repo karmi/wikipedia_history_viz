@@ -37,18 +37,19 @@ function WikipediaHistory(data) {
         bottomgutter = 100,
         topgutter = 20,
         r = Raphael("timeline", width, height),
-        txt_white  = {font: '12px Arial', fill: "#fff"},
-        txt_normal = {font: '12px Arial', fill: "#000"},
+        txt_white  = {font: '11px Arial', fill: "#fff"},
+        txt_normal = {font: '11px Arial', fill: "#000"},
         txt_small  = {font: '9px Arial', fill: "#666"};
-    var frame = r.rect(10, 10, 100, 40, 5).attr({fill: "#000", stroke: "none"}).hide(),
+    var frame = r.rect(10, 10, 100, 50, 5).attr({fill: "#000", stroke: "none"}).hide(),
         leave_timer,
         label = [],
         is_label_visible = false,
         blanket = r.set();
     var total_revision_count = 0;
 
-    label[0] = r.text(60, 10, "0000").attr(txt_white).hide();
-    label[1] = r.text(60, 30, "--").attr(txt_small).hide();
+    label[0] = r.text(10, 12, "--").attr(txt_white).hide();
+    label[1] = r.text(10, 22, "--").attr(txt_small).hide();
+    label[2] = r.text(10, 32, "--").attr(txt_small).hide();
 
     // Draw year and month marks
     var draw_year = function(year, x) {
@@ -122,9 +123,11 @@ function WikipediaHistory(data) {
             function () {
               var newcoord = { x: marker.getBBox().x, y: marker.getBBox().y+(marker.getBBox().height) };
               if (newcoord.x + 100 > width) { newcoord.x -= 114; };
+              // Update label
               frame.attr({x: newcoord.x, y: newcoord.y}).show();
-              label[0].attr({text: rev.author, x: +newcoord.x + 50, y: +newcoord.y + 12}).show();
-              label[1].attr({text: rev.date, x: +newcoord.x + 50, y: +newcoord.y + 27}).show();
+              label[0].attr({text: rev.author, x: +newcoord.x+50, y: +newcoord.y+12}).show();
+              label[1].attr({text: rev.subject, x: +newcoord.x + 50, y: +newcoord.y + 24}).show();
+              label[2].attr({text: rev.date, x: +newcoord.x + 50, y: +newcoord.y + 36}).show();
               marker.attr({fill: '#000'});
               is_label_visible = true;
             },
@@ -133,6 +136,7 @@ function WikipediaHistory(data) {
               frame.hide();
               label[0].hide();
               label[1].hide();
+              label[2].hide();
               is_label_visible = false;
             }
           )
@@ -151,6 +155,7 @@ function WikipediaHistory(data) {
       frame.toFront();
       label[0].toFront();
       label[1].toFront();
+      label[2].toFront();
       blanket.toFront();
 
       // Adjust timeline width to data
