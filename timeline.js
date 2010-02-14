@@ -32,7 +32,7 @@ function WikipediaHistoryTimeline(data) {
         marker_height = 3,
         marker_stroke = 1;
     var width = $this.data.length*(marker_width+marker_stroke)+50,
-        height = 450,
+        height = Math.max.apply( Math, $.map($this.data, function(n,i) {return n.revisions.length*6})),
         leftgutter = 30,
         bottomgutter = 100,
         topgutter = 20,
@@ -89,7 +89,6 @@ function WikipediaHistoryTimeline(data) {
 
       var ratio = 0;
       var move_by = 0;
-      var month_height = 0;
 
       // Iterate over revisions in month
       $.each( data[i].revisions, function(rev_index, rev) {
@@ -148,7 +147,6 @@ function WikipediaHistoryTimeline(data) {
             }
           )
 
-        month_height += marker.getBBox().height+marker_stroke+topgutter;
       }); // end revision
 
       frame.toFront();
@@ -156,9 +154,6 @@ function WikipediaHistoryTimeline(data) {
       label[1].toFront();
       label[2].toFront();
       blanket.toFront();
-
-      // Adjust timeline width to data
-      if (month_height > r.height) r.height = month_height;
 
    }; // end month
 
