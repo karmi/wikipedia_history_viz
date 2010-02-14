@@ -37,10 +37,10 @@ function WikipediaHistory(data) {
         bottomgutter = 100,
         topgutter = 20,
         r = Raphael("timeline", width, height),
-        txt_white  = {font: '11px Arial', fill: "#fff"},
+        txt_white  = {font: '11px Arial', fill: "#ccc"},
         txt_normal = {font: '11px Arial', fill: "#000"},
         txt_small  = {font: '9px Arial', fill: "#666"};
-    var frame = r.rect(10, 10, 100, 50, 5).attr({fill: "#000", stroke: "none"}).hide(),
+    var frame = r.rect(10, 10, 120, 50, 5).attr({fill: "#000", stroke: "none"}).hide(),
         leave_timer,
         label = [],
         is_label_visible = false,
@@ -48,7 +48,7 @@ function WikipediaHistory(data) {
     var total_revision_count = 0;
 
     label[0] = r.text(10, 12, "--").attr(txt_white).hide();
-    label[1] = r.text(10, 22, "--").attr(txt_small).hide();
+    label[1] = r.text(10, 22, "--").attr(txt_small).attr({fill:"#999"}).hide();
     label[2] = r.text(10, 32, "--").attr(txt_small).hide();
 
     // Draw year and month marks
@@ -122,12 +122,11 @@ function WikipediaHistory(data) {
           .hover(
             function () {
               var newcoord = { x: marker.getBBox().x, y: marker.getBBox().y+(marker.getBBox().height) };
-              if (newcoord.x + 100 > width) { newcoord.x -= 114; };
-              // Update label
               frame.attr({x: newcoord.x, y: newcoord.y}).show();
-              label[0].attr({text: rev.author, x: +newcoord.x+50, y: +newcoord.y+12}).show();
-              label[1].attr({text: rev.subject, x: +newcoord.x + 50, y: +newcoord.y + 24}).show();
-              label[2].attr({text: rev.date, x: +newcoord.x + 50, y: +newcoord.y + 36}).show();
+              var xpos_adj = frame.getBBox().width/2;
+              label[0].attr({text: rev.author,  x: +newcoord.x+xpos_adj, y: +newcoord.y+12}).show();
+              label[1].attr({text: rev.subject.substr(0, 20), x: +newcoord.x+xpos_adj, y: +newcoord.y+24}).show();
+              label[2].attr({text: rev.date,    x: +newcoord.x+xpos_adj, y: +newcoord.y+36}).show();
               marker.attr({fill: '#000'});
               is_label_visible = true;
             },
