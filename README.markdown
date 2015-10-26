@@ -9,7 +9,7 @@ See sample output below.
 How it works
 -------------
 
-There are some rough, procedural, stupid, etc Ruby scripts in the `scripts` folder, have a look and you can try it out.
+There are some very ad-hoc Ruby scripts in the `scripts` folder, have a look and you can try it out.
 
 First, the `wikipage_to_git.rb` script loads XML export with Wikipedia history (see comments inside how to get it) into a Git repository.
 
