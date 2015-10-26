@@ -4,7 +4,7 @@ Wikipedia History Visualization
 Experimental visualization of Wikipedia page history with the [Raphael.js](http://raphaeljs.com/) framwork, done for an article.
 See sample output below.
 
-![Screenshot](http://github.com/karmi/wikipedia_history_viz/raw/master/screenshot.png)
+![Screenshot](https://raw.githubusercontent.com/karmi/wikipedia_history_viz/master/screenshot.png)
 
 How it works
 -------------
